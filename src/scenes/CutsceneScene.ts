@@ -51,20 +51,40 @@ export default class CutsceneScene extends Phaser.Scene {
     this.currentIndex = 0;
     this.currentTextIndex = 0;
 
-    this.bgImage = this.add.image(500, 350, '').setOrigin(0.5);
+    const width = this.scale.width;
+    const height = this.scale.height;
+
+    this.bgImage = this.add.image(width / 2, height / 2, '').setOrigin(0.5);
     this.bgImage.setVisible(false);
 
     this.dialogBox = this.add.graphics();
-    this.dialogText = this.add.text(50, 560, '', {
+    this.dialogText = this.add.text(50, height - 140, '', {
       font: '20px monospace',
       color: '#ffffff',
-      wordWrap: { width: 900 }
+      wordWrap: { width: width - 100 }
     });
 
-    this.promptText = this.add.text(965, 660, 'ESPAÇO para avançar', {
+    this.promptText = this.add.text(width - 35, height - 40, 'ESPAÇO para avançar', {
       font: '18px monospace',
       color: '#ffffff'
     }).setOrigin(1, 1);
+
+    this.scale.on('resize', (gameSize: Phaser.Structs.Size) => {
+      const w = gameSize.width;
+      const h = gameSize.height;
+      this.bgImage?.setPosition(w / 2, h / 2);
+      if (this.bgImage && this.bgImage.texture.key !== '__DEFAULT') {
+          this.bgImage.setDisplaySize(w, h);
+      }
+      this.promptText?.setPosition(w - 35, h - 40);
+      if (this.dialogText?.originX === 0.5) {
+        this.dialogText?.setPosition(w / 2, h / 2);
+      } else {
+        this.dialogText?.setPosition(50, h - 140);
+        this.dialogText?.setStyle({ wordWrap: { width: w - 100 } });
+      }
+      this.drawBox(cutsceneSequence[this.currentIndex]?.type === 'image');
+    });
 
     this.tweens.add({
       targets: this.promptText,
@@ -90,7 +110,7 @@ export default class CutsceneScene extends Phaser.Scene {
       this.currentTypedText = this.currentFullText;
       if (current.type === 'text') {
         this.dialogText?.setText(this.currentTypedText);
-        this.dialogText?.setPosition(500, 350); // centralizado
+        this.dialogText?.setPosition(this.scale.width / 2, this.scale.height / 2); // centralizado
         this.dialogText?.setOrigin(0.5);
       } else {
         this.dialogText?.setText(this.currentTypedText);
@@ -117,16 +137,17 @@ export default class CutsceneScene extends Phaser.Scene {
 
     if (current.type === 'image' && current.imageKey) {
       this.bgImage?.setTexture(current.imageKey);
+      this.bgImage?.setDisplaySize(this.scale.width, this.scale.height);
       this.bgImage?.setVisible(true);
       // reset dialog styles
       this.dialogText?.setOrigin(0);
-      this.dialogText?.setPosition(50, 560);
+      this.dialogText?.setPosition(50, this.scale.height - 140);
       this.dialogText?.setAlign('left');
     } else {
       this.bgImage?.setVisible(false);
       // setup text style for intro
       this.dialogText?.setOrigin(0.5);
-      this.dialogText?.setPosition(500, 350);
+      this.dialogText?.setPosition(this.scale.width / 2, this.scale.height / 2);
       this.dialogText?.setAlign('center');
       this.drawBox(false);
     }
@@ -170,14 +191,16 @@ export default class CutsceneScene extends Phaser.Scene {
   }
 
   drawBox(visible: boolean) {
+    const width = this.scale.width;
+    const height = this.scale.height;
     this.dialogBox?.clear();
     if (visible) {
       const margem = 30;
       const caixaAltura = 120;
       this.dialogBox?.fillStyle(0x000000, 0.6);
-      this.dialogBox?.fillRect(margem, 700 - caixaAltura - margem, 1000 - margem * 2, caixaAltura);
+      this.dialogBox?.fillRect(margem, height - caixaAltura - margem, width - margem * 2, caixaAltura);
       this.dialogBox?.lineStyle(2, 0xffffff);
-      this.dialogBox?.strokeRect(margem, 700 - caixaAltura - margem, 1000 - margem * 2, caixaAltura);
+      this.dialogBox?.strokeRect(margem, height - caixaAltura - margem, width - margem * 2, caixaAltura);
     }
   }
 }
