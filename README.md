@@ -13,7 +13,7 @@
 </div>
 
 <div align="center">
-  ## [Acese o jogo aqui 🌲](https://sycamore-valley-game.vercel.app/)
+  ## [Acesse Sycamore Valley aqui! 🌲](https://sycamore-valley-game.vercel.app/)
 </div>
 
 Embora *Sycamore Valley* tenha nascido como um Universo Alternativo (AU) construído sobre a fundação de Whisper Valley, ele evoluiu drasticamente e conquistou uma identidade própria, independente e madura. O projeto se transformou em um intenso jogo de *pixel-art horror metafísico* com uma *lore* profundamente psicológica e autoral. 
