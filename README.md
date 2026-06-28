@@ -4,7 +4,7 @@
   <img src="assets/logo.png" alt="Whisper Valley Logo">
 </div>
 
-**Whisper Valley Remake** é a recriação do [**universo original**](https://caio-oliveiraa.github.io/whiper-valley/) que inspirou meu outro jogo que é um universo alternativo (AU) de Whisper Valley, chamado: [**Sycamore Valley**](https://sycamore-valley-game.vercel.app/).
+**Whisper Valley Remake** é a recriação definitiva e modernizada do [**universo original**](https://caio-oliveiraa.github.io/whiper-valley/), um projeto com raízes profundas que não apenas marcou o início de uma importante jornada no desenvolvimento de jogos, mas também serviu de inspiração direta para a criação do meu outro projeto: o vasto universo alternativo (AU) de [**Sycamore Valley**](https://sycamore-valley-game.vercel.app/). Mais do que um simples jogo novo, este remake é um esforço apaixonado de preservação histórica, construído do zero para honrar a essência, a arte e o mistério do jogo clássico, ao mesmo tempo em que eleva a experiência técnica para os padrões atuais e um convite para as pessoas conhecerem Sycamore Valley.
 
 ## 🏫 A Origem: Whisper Valley
 
