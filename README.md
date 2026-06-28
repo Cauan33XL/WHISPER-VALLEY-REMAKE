@@ -48,8 +48,9 @@ Para entender este Remake, é fundamental conhecer a dinâmica do jogo original.
 - **Eu (Cauan)**: Fui o responsável pela criação de todos os Assets de arte e design. Além disso, programei a lógica que permitiu que o *spritesheet* do *player* funcionasse no código original.
 - **Caio**: Foi o responsável por desenvolver 90% do código e estruturação do jogo original.
 
-🎮 **[Jogue a versão original clássica aqui!](https://caio-oliveiraa.github.io/whiper-valley/)**
-🔗 [Acesse aqui o repositório original pertencente ao Caio](https://github.com/Caio-oliveiraa/whiper-valley).
+- 🎮 **[Jogue a versão original clássica aqui!](https://caio-oliveiraa.github.io/whiper-valley/)**
+
+- 🔗 [Acesse aqui o repositório original pertencente ao Caio](https://github.com/Caio-oliveiraa/whiper-valley).
 
 ## 🏆 Créditos da Obra Original
 Um agradecimento especial e todos os créditos aos criadores originais do universo de Whisper Valley:
