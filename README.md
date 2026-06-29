@@ -1,7 +1,7 @@
 # WHISPER VALLEY - REMAKE BY 33XL GAMES SYSTEM
 
 <div align="center">
-  <img src="public/assets/logo.png" alt="Whisper Valley Logo">
+  <img src="public/assets/capas/logo.png" alt="Whisper Valley Logo">
 </div>
 <div align="center">
  
@@ -27,7 +27,7 @@ A história acompanha um mistério denso. Após o fracasso de sua última public
 # 🌲 SYCAMORE VALLEY - AU GAME
 
 <div align="center">
-  <img src="public/sycamore.png" alt="Sycamore Valley Logo">
+  <img src="public/sycamore/sycamore.png" alt="Sycamore Valley Logo">
 </div>
 <div align="center">
  

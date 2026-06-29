@@ -9,9 +9,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     D: Phaser.Input.Keyboard.Key;
   };
   private speed = 400; // Phaser uses pixels per second, 7 * 60FPS ~= 420
+  private shadow: Phaser.GameObjects.Ellipse;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'player');
+
+    // Sombra no chão
+    this.shadow = scene.add.ellipse(x, y + 75, 60, 25, 0x000000, 0.4);
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -100,5 +104,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     
     // Normalizar a velocidade na diagonal (opcional, torna o jogo mais suave que o original)
     this.body?.velocity.normalize().scale(this.speed);
+
+    // Atualiza a posição da sombra
+    this.shadow.setPosition(this.x, this.y + 75);
   }
 }

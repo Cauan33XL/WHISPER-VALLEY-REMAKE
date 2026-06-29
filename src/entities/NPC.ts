@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import Player from './Player';
 
-export default class NPC extends Phaser.GameObjects.Image {
+export default class NPC extends Phaser.Physics.Arcade.Image {
   private falas: string[];
   private indiceFala = 0;
   public interagindo = false;
@@ -11,7 +11,7 @@ export default class NPC extends Phaser.GameObjects.Image {
   private dialogText: Phaser.GameObjects.Text;
   private continueText: Phaser.GameObjects.Text;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, texture: string, falas: string[], _displayWidth = 64, _displayHeight = 96) {
+  constructor(scene: Phaser.Scene, x: number, y: number, texture: string, falas: string[] = []) {
     super(scene, x, y, texture);
     this.falas = falas;
     
@@ -19,16 +19,33 @@ export default class NPC extends Phaser.GameObjects.Image {
     // Original usava coordenadas no topo-esquerdo (0, 0)
     this.setOrigin(0, 0);
     
-    // Calcula a escala mantendo a proporção original para não ficar "fino",
-    // usando uma altura próxima à do Player (aprox 160 pixels de altura).
-    const targetHeight = 160;
-    const scale = targetHeight / this.height;
-    this.setScale(scale);
+    // Calcula a escala com base numa altura ideal, um pouco maior que a do player
+    const targetHeight = 195;
+    const baseScale = targetHeight / this.height;
+    
+    // Deixa mais largo (45% extra) para ficarem mais proporcionais (mais grossos)
+    const scaleX = baseScale * 1.45;
+    const scaleY = baseScale;
+    this.setScale(scaleX, scaleY);
 
     scene.add.existing(this);
+    scene.physics.add.existing(this, true); // true = corpo estático
+    
+    if (this.body) {
+      // Ajusta a hitbox para os pés do NPC.
+      this.body.setSize(this.width * 0.6, 25);
+      this.body.setOffset(this.width * 0.2, this.height - 25);
+    }
+    
+    // Configura a profundidade (depth) baseada na posição Y da base do sprite (pés)
+    this.setDepth(this.y + this.displayHeight);
+
+    // Sombra no chão
+    const shadow = scene.add.ellipse(x + (this.width * scaleX) / 2, y + (this.height * scaleY) - 5, 60, 25, 0x000000, 0.4);
+    shadow.setDepth(this.depth - 1);
 
     // Texto flutuante de dica
-    this.promptText = scene.add.text(x + (this.width * scale) / 2, y - 20, 'ESPAÇO para interagir', {
+    this.promptText = scene.add.text(x + (this.width * scaleX) / 2, y - 20, 'ESPAÇO para interagir', {
       font: '16px monospace',
       color: '#ffffff',
       backgroundColor: '#00000088'

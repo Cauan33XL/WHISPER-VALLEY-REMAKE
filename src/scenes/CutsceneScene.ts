@@ -88,7 +88,7 @@ export default class CutsceneScene extends Phaser.Scene {
       wordWrap: { width: width - 100 }
     });
 
-    this.promptText = this.add.text(width - 35, height - 40, 'ESPAÇO para avançar', {
+    this.promptText = this.add.text(width - 35, height - 40, 'ESPAÇO avançar | ESC pular', {
       font: '18px monospace',
       color: '#ffffff'
     }).setOrigin(1, 1);
@@ -122,7 +122,20 @@ export default class CutsceneScene extends Phaser.Scene {
       this.advance();
     });
 
+    this.input.keyboard?.on('keydown-ESC', () => {
+      this.skipAll();
+    });
+
     this.renderCurrentScene();
+  }
+
+  skipAll() {
+    if (this.isResume) {
+      this.scene.resume(this.nextScene);
+      this.scene.stop();
+    } else {
+      this.scene.start(this.nextScene);
+    }
   }
 
   advance() {
@@ -200,23 +213,17 @@ export default class CutsceneScene extends Phaser.Scene {
 
     if (this.typeWriterEvent) this.typeWriterEvent.remove(false);
 
-    if (current.type === 'text') {
-      // Efeito de digitação lento para a introdução
-      let i = 0;
-      this.typeWriterEvent = this.time.addEvent({
-        delay: 40,
-        repeat: this.currentFullText.length - 1,
-        callback: () => {
-          this.currentTypedText += this.currentFullText[i];
-          this.dialogText?.setText(this.currentTypedText);
-          i++;
-        }
-      });
-    } else {
-      // Texto normal para balão de diálogo (instantâneo ou pode ser digitado tbm)
-      this.currentTypedText = this.currentFullText;
-      this.dialogText?.setText(this.currentTypedText);
-    }
+    // Efeito de digitação para todas as falas
+    let i = 0;
+    this.typeWriterEvent = this.time.addEvent({
+      delay: current.type === 'text' ? 40 : 25, // texto da intro um pouco mais lento
+      repeat: this.currentFullText.length - 1,
+      callback: () => {
+        this.currentTypedText += this.currentFullText[i];
+        this.dialogText?.setText(this.currentTypedText);
+        i++;
+      }
+    });
   }
 
   drawBox(visible: boolean) {

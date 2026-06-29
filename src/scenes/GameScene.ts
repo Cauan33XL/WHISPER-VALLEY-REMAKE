@@ -32,6 +32,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.npcs = [];
+    this.items = [];
     this.spaceKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     const mapImage = this.add.image(0, 0, 'mapa_jogo').setOrigin(0, 0);
@@ -98,6 +100,9 @@ export default class GameScene extends Phaser.Scene {
       "Ethan: O que você estava tentando me mostrar, amigo?"
     ]));
 
+    // Colisão do player com os NPCs
+    this.physics.add.collider(this.player, this.npcs);
+
     // Inicializar Inventário e Itens
     this.inventory = new Inventory(this);
     // Para simplificar, estamos criando texturas placeholder para os itens caso não existam as imagens
@@ -114,7 +119,7 @@ export default class GameScene extends Phaser.Scene {
     // Inicializar Zonas de Evento (Cutscenes do mapa)
     this.eventZones = [
       {
-        id: 'pousada', x: 6150, y: 2470, w: 200, h: 200, triggered: false,
+        id: 'pousada', x: 5800, y: 2600, w: 200, h: 200, triggered: false,
         sequence: [
           { type: 'image', imageKey: 'cena-5', texts: [
             "Ethan: Estranho... não há ninguém aqui dentro.",
@@ -184,11 +189,14 @@ export default class GameScene extends Phaser.Scene {
         music.play();
       });
     }
+
+    // Iniciar UI
+    this.scene.launch('UIScene');
   }
 
   update() {
-    // Se o inventário está aberto ou um puzzle modal está aberto, congelar player
-    if (this.inventory.visivel || this.puzzleManager.isAnyModalOpen()) {
+    // Se um puzzle modal está aberto, congelar player
+    if (this.puzzleManager.isAnyModalOpen()) {
       this.player.active = false;
       this.player.anims.stop();
       (this.player.body as Phaser.Physics.Arcade.Body).setVelocity(0);

@@ -40,30 +40,30 @@ export default class PreloadScene extends Phaser.Scene {
 
     // Load assets here
     // Exemplo (os assets reais precisarão ser checados):
-    this.load.image('logo', 'assets/logo.png');
-    this.load.image('instrucoes', 'assets/instrucoes.jpg');
-    this.load.image('cena-1', 'assets/cena-1.png');
-    this.load.image('cena-2', 'assets/cena-2.png');
-    this.load.image('cena-3', 'assets/cena-3.png');
-    this.load.image('cena-4', 'assets/cena-4.png');
-    this.load.image('cena-5', 'assets/cena-5.png');
-    this.load.image('cena-6', 'assets/cena-6.png');
-    this.load.image('cena-7', 'assets/cena-7.png');
-    this.load.image('cena-8', 'assets/cena-8.png');
-    this.load.image('cena-9', 'assets/cena-9.png');
-    this.load.image('cena-10', 'assets/cena-10.png');
-    this.load.image('cena-11', 'assets/cena-11.png');
-    this.load.image('cena-12', 'assets/cena-12.png');
-    this.load.image('cena-13', 'assets/cena-13.png');
-    this.load.image('cena-14', 'assets/cena-14.png');
-    this.load.image('cena-15', 'assets/cena-15.png');
-    this.load.image('cena-16', 'assets/cena-16.png');
-    this.load.image('mapa_jogo', 'assets/mapa_jogo.webp');
-    this.load.image('npc-1', 'assets/npc-1.png');
-    this.load.image('npc-2', 'assets/npc-2.png');
-    this.load.image('npc-3', 'assets/npc-3.png');
-    this.load.image('npc-4', 'assets/npc-4.png');
-    this.load.image('npc-5', 'assets/npc-5.png');
+    this.load.image('logo', 'assets/capas/logo.png');
+    this.load.image('instrucoes', 'assets/ui/instrucoes.png');
+    this.load.image('cena-1', 'assets/cenas/cena-1.png');
+    this.load.image('cena-2', 'assets/cenas/cena-2.png');
+    this.load.image('cena-3', 'assets/cenas/cena-3.png');
+    this.load.image('cena-4', 'assets/cenas/cena-4.png');
+    this.load.image('cena-5', 'assets/cenas/cena-5.png');
+    this.load.image('cena-6', 'assets/cenas/cena-6.png');
+    this.load.image('cena-7', 'assets/cenas/cena-7.png');
+    this.load.image('cena-8', 'assets/cenas/cena-8.png');
+    this.load.image('cena-9', 'assets/cenas/cena-9.png');
+    this.load.image('cena-10', 'assets/cenas/cena-10.png');
+    this.load.image('cena-11', 'assets/cenas/cena-11.png');
+    this.load.image('cena-12', 'assets/cenas/cena-12.png');
+    this.load.image('cena-13', 'assets/cenas/cena-13.png');
+    this.load.image('cena-14', 'assets/cenas/cena-14.png');
+    this.load.image('cena-15', 'assets/cenas/cena-15.png');
+    this.load.image('cena-16', 'assets/cenas/cena-16.png');
+    this.load.image('mapa_jogo', 'assets/mapas/mapa_jogo.webp');
+    this.load.image('npc-1', 'assets/npcs/npc-1.png');
+    this.load.image('npc-2', 'assets/npcs/npc-2.png');
+    this.load.image('npc-3', 'assets/npcs/npc-3.png');
+    this.load.image('npc-4', 'assets/npcs/npc-4.png');
+    this.load.image('npc-5', 'assets/npcs/npc-5.png');
 
     // Itens
     this.load.image('pedra', 'assets/itens/pedra.png');
@@ -74,7 +74,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('mochila', 'assets/itens/mochila.png');
 
     // Spritesheet do Player (de Player.js: 102x101)
-    this.load.spritesheet('player', 'assets/spritesheet.png', {
+    this.load.spritesheet('player', 'assets/spritesheets/spritesheet.png', {
       frameWidth: 102,
       frameHeight: 101
     });

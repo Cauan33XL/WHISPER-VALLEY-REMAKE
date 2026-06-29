@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
+import './style.css';
 import PreloadScene from './scenes/PreloadScene';
 import GameScene from './scenes/GameScene';
 import CutsceneScene from './scenes/CutsceneScene';
 import FinalScene from './scenes/FinalScene';
+import UIScene from './scenes/UIScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -29,6 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
     PreloadScene,
     CutsceneScene,
     GameScene,
+    UIScene,
     FinalScene
   ]
 };
