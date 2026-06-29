@@ -39,5 +39,9 @@ export const dialogos = {
     "Ethan (pensando): Ou... que eu pelo menos volte dela.",
     "Ethan: Whisper Valley...",
     "Ethan: Que tipo de lugar é esse?"
+  ],
+
+  cena4: [
+    "Ethan: Meu chefe mandou eu ir direto para a pousada ao chegar."
   ]
 };

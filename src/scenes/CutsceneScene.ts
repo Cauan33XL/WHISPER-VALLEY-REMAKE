@@ -7,6 +7,12 @@ export interface CutsceneConfig {
   texts?: string[];
 }
 
+export interface CutsceneInitData {
+  sequence?: CutsceneConfig[];
+  nextScene?: string;
+  isResume?: boolean;
+}
+
 const introSequence: CutsceneConfig[] = [
   { type: 'image', imageKey: 'logo' },
   { type: 'image', imageKey: 'instrucoes' },
@@ -27,7 +33,7 @@ const introSequence: CutsceneConfig[] = [
   { type: 'image', imageKey: 'cena-1', texts: dialogos.cena1 },
   { type: 'image', imageKey: 'cena-2', texts: dialogos.cena2 },
   { type: 'image', imageKey: 'cena-3', texts: dialogos.cena3 },
-  { type: 'image', imageKey: 'cena-4' },
+  { type: 'image', imageKey: 'cena-4', texts: dialogos.cena4 },
 ];
 
 export default class CutsceneScene extends Phaser.Scene {
@@ -50,20 +56,20 @@ export default class CutsceneScene extends Phaser.Scene {
     super('CutsceneScene');
   }
 
-  init(data: any) {
-    if (data && data.sequence) {
+  init(data: CutsceneInitData = {}) {
+    if (data.sequence) {
       this.cutsceneSequence = data.sequence;
     } else {
       this.cutsceneSequence = introSequence;
     }
     
-    if (data && data.nextScene) {
+    if (data.nextScene) {
       this.nextScene = data.nextScene;
     } else {
       this.nextScene = 'GameScene';
     }
 
-    if (data && data.isResume !== undefined) {
+    if (data.isResume !== undefined) {
       this.isResume = data.isResume;
     } else {
       this.isResume = false;
